@@ -23,7 +23,8 @@ RUN apt-get update \
     mariadb-client \
     curl \
     libssl-dev \
-    openssl
+    openssl \
+    libxml2-dev
 
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
