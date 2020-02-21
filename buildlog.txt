@@ -1,1 +1,21 @@
-Sending build context to Docker daemon  92.16kB
+Sending build context to Docker daemon  96.77kB
+Step 1/24 : FROM php:5.6-apache
+ ---> 24c791995c1e
+Step 2/24 : RUN apt-get update   && apt-get install -y     git     zip
+ ---> Using cache
+ ---> 84c4d179b895
+Step 3/24 : RUN apt-get update   && apt-get install -y     libpng-dev     libjpeg-dev     libfreetype6-dev   && docker-php-ext-configure gd     --with-freetype-dir=/usr/include/     --with-png-dir=/usr/include/     --with-jpeg-dir=/usr/include/   && docker-php-ext-install -j$(nproc)     gd
+ ---> Using cache
+ ---> 041792a713c0
+Step 4/24 : RUN apt-get update   && apt-get install -y     mysql-client     mariadb-client     curl-dev     libssl-dev     openssl     libxml2-dev
+ ---> Running in 398f8b73bee8
+Hit:1 http://security-cdn.debian.org/debian-security stretch/updates InRelease
+Ign:2 http://deb.debian.org/debian stretch InRelease
+Hit:3 http://deb.debian.org/debian stretch-updates InRelease
+Hit:4 http://deb.debian.org/debian stretch Release
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+[91mE[0m[91m: [0m[91mUnable to locate package curl-dev[0m[91m
+[0m
