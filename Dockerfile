@@ -1,23 +1,32 @@
 FROM php:5.6-apache
 
-RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get update \
+  && apt-get install -y \
+    git \
+    zip
 
-RUN apt-get install -y apt-utils
-RUN apt-get install -y git zip
+RUN apt-get update \
+  && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+  && docker-php-ext-configure gd \
+    --with-freetype-dir=/usr/include/ \
+    --with-png-dir=/usr/include/ \
+    --with-jpeg-dir=/usr/include/ \
+  && docker-php-ext-install -j$(nproc) \
+    gd
 
-RUN apt-get install -y libpng12-dev libjpeg62-turbo-dev libfreetype6-dev
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
-    && docker-php-ext-install gd
+RUN apt-get update \
+  && apt-get install -y \
+    mysql-client \
+    mariadb-client \
+    curl \
+    libssl-dev \
+    openssl
 
-RUN apt-get install -y mysql-client
-RUN apt-get install -y mariadb-client
-
-RUN apt-get install -y curl
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
-
-RUN apt-get install -y libssl-dev openssl
 
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install mysqli
