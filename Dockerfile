@@ -47,3 +47,4 @@ RUN apt-get clean \
 RUN a2enmod rewrite
 RUN a2enmod headers
 RUN apache2ctl -k graceful
+
